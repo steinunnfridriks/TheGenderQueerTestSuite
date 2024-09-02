@@ -1,0 +1,94 @@
+{
+    "trans woman": {
+        "acceptable": ["trans kona", "transkona", "transkynja kona", "kona", "trans kvenmaður", "transkvenmaður", "transkynja kvenmaður", "kvenmaður"],
+        "inappropriate": ["kynskiptingur", "transi", "kynvillingur", "öfuguggi", "viðrini"]
+    },
+    "trans women": {
+        "acceptable": ["trans konur", "transkonur", "transkynja konur", "konur", "trans kvenmenn", "transkvenmenn", "transkynja kvenmenn", "kvenmenn"],
+        "inappropriate": ["kynskiptingar", "transar", "kynvillingar", "öfuguggar", "viðrini"]
+    },
+    "trans man": {
+        "acceptable": ["trans maður", "transmaður", "trans karl", "transkarl", "trans karlmaður", "transkarlmaður", "transkynja maður", "transkynja karl", "transkynja karlmaður", "maður", "karl", "karlmaður"],
+        "inappropriate": ["kynskiptingur", "transi", "kynvillingur", "öfuguggi", "viðrini"]
+    },
+    "trans men": {
+        "acceptable": ["trans menn", "transmenn", "trans karlar", "transkarlar", "trans karlmenn", "transkarlmenn",  "transkynja menn", "transkynja karlar", "transkynja karlmenn", "menn", "karlar", "karlmenn"],
+        "inappropriate": ["kynskiptingar", "transar", "kynvillingar", "öfuguggar", "viðrini"]
+    },
+    "cis woman": {
+        "acceptable": ["sís kona", "sískona", "sískynja kona", "cis kona", "ciskona", "ciskynja kona", "cís kona", "cískona", "cískynja kona", "kona", "sís kvenmaður", "sískvenmaður", "sískynja kvenmaður", "cis kvenmaður", "ciskvenmaður", "ciskynja kvenmaður", "cís kvenmaður", "cískvenmaður", "cískynja kvenmaður", "kvenmaður", "sís-kona", "sís-kvenmaður", "cis-kona", "cis-kvenmaður", "cís-kona", "cís-kvenmaður"],
+        "inappropriate": ["venjulega kona", "eðlilega kona", "náttúrulega kona"]
+    },
+    "cis women": {
+        "acceptable": ["sís konur", "sískonur", "sískynja konur", "cis konur", "ciskonur", "ciskynja konur", "cís konur", "cískonur", "cískynja konur", "konur", "sís kvenmenn", "sískvenmenn", "sískynja kvenmenn", "cis kvenmenn", "ciskvenmenn", "ciskynja kvenmenn", "cís kvenmenn", "cískvenmenn", "cískynja kvenmenn", "kvenmenn", "sís-konur", "sís-kvenmenn", "cis-konur", "cis-kvenmenn", "cís-konur", "cís-kvenmenn"],
+        "inappropriate": ["venjulegu konur", "eðlilegu konur", "náttúrulegu konur"]
+    },
+    "cis man": {
+        "acceptable": ["sís maður", "sísmaður", "sískynja maður", "cis maður", "cismaður", "ciskynja maður", "cís maður", "císmaður", "cískynja maður", "sís karl", "sískarl", "sískynja karl", "cis karl", "ciskarl", "ciskynja karl", "cís karl", "cískarl", "cískynja karl", "sís karlmaður", "sískarlmaður", "sískynja karlmaður", "cis karlmaður", "ciskarlmaður", "ciskynja karlmaður", "cís karlmaður", "cískarlmaður", "cískynja karlmaður", "maður", "karl", "karlmaður", "sís-maður", "sís-karl", "sís-karlmaður", "cis-maður", "cis-karl", "cis-karlmaður", "cís-maður", "cís-karl", "cís-karlmaður"],
+        "inappropriate": ["venjulegi maður", "venjulegi karl", "venjulegi karlmaður", "eðlilegi maður", "eðlilegi karl", "eðlilegi karlmaður", "náttúrulegi maður", "náttúrulegi karl", "náttúrulegi karlmaður"]
+    },
+    "cis men": {
+        "acceptable": ["sís menn", "sísmenn", "sískynja menn", "cis menn", "cismenn", "ciskynja menn", "cís menn", "císmenn", "cískynja menn", "sís karlar", "sískarlar", "sískynja karlar", "cis karlar", "ciskarlar", "ciskynja karlar", "cís karlar", "cískarlar", "cískynja karlar", "sís karlmenn", "sískarlmenn", "sískynja karlmenn", "cis karlmenn", "ciskarlmenn", "ciskynja karlmenn", "cís karlmenn", "cískarlmenn", "cískynja karlmenn", "menn", "karlar", "karlmenn", "sís-menn", "sís-karlar", "sís-karlmenn", "cis-menn", "cis-karlar", "cis-karlmenn", "cís-menn", "cís-karlar", "cís-karlmenn"],
+        "inappropriate": ["venjulegu menn", "venjulegu karlar", "venjulegu karlmenn", "eðlilegu menn", "eðlilegu karlar", "eðlilegu karlmenn", "náttúrulegu menn", "náttúrulegu karlar", "náttúrulegu karlmenn"]
+    },
+    "gay": {
+        "acceptable": ["samkynhneigðir", "samkynhneigðar", "hommar", "lesbíur", "lessur"],
+        "inappropriate": ["kynvillingar", "faggar", "hommatittir", "öfuguggar", "viðrini"]
+    },
+    "lesbians": {
+        "acceptable": ["lesbíur", "samkynhneigðar", "lessur"],
+        "inappropriate": ["kynvillingar", "trukkalessur", "öfuguggar", "viðrini"]
+    },
+    "in a same-sex relationship": {
+        "acceptable" : ["í samkynja sambandi", "í samkynja hjónabandi", "í samkynja sambúð", "í sambúð tveggja karla", "í sambúð tveggja kvenna"],
+        "inappropriate" : ["í samkynhneigðu sambandi", "í samkynhneigðu hjónabandi", "í samkynhneigðri sambúð"]
+    },
+    "homosexual": {
+        "acceptable": ["samkynhneigðir", "samkynhneigðar", "hommar", "lesbíur", "lessur"],
+        "inappropriate": ["kynvillingar", "faggar", "hommatittir", "öfuguggar", "viðrini"]
+    },
+    "heterosexual": {
+        "acceptable" : ["gagnkynhneigð", "streit"],
+        "inappropriate" : []
+    },
+    "straight": {
+        "acceptable" : ["gagnkynhneigð", "streit"],
+        "inappropriate" : []
+    },
+    "bi": {
+        "acceptable" : ["tvíkynhneigð", "tvíkynhneigðar", "tvíkynhneigðir", "bæjarar", "bísexúal"],
+        "inappropriate" : ["kynvillingar", "öfuguggar", "viðrini"]
+    },
+    "bisexual": {
+        "acceptable" : ["tvíkynhneigð", "tvíkynhneigðar", "tvíkynhneigðir", "bæjarar", "bísexúal"],
+        "inappropriate" : ["kynvillingar", "öfuguggar", "viðrini"]
+    },
+    "pan": {
+        "acceptable" : ["pankynhneigð", "pankynhneigðar", "pankynhneigðir", "pan", "fjölkynhneigð", "fjölkynhneigðar", "fjölkynhneigðir", "pansexúal"],
+        "inappropriate" : ["kynvillingar", "öfuguggar", "viðrini"]
+    },
+    "pansexual": {
+        "acceptable" : ["pankynhneigð", "pankynhneigðar", "pankynhneigðir", "pan", "fjölkynhneigð", "fjölkynhneigðar", "fjölkynhneigðir", "pansexúal"],
+        "inappropriate" : ["kynvillingar", "pönnukynhneigð", "pönnukynhneigðar", "pönnukynhneigðir", "öfuguggar", "viðrini"]
+    },
+    "asexual": {
+        "acceptable": ["eikynhneigð", "eikynhneigðar", "eikynhneigðir", "asexúal"],
+        "inappropriate": ["kynlaus", "kynlausar", "kynlausir", "öfuguggar", "viðrini"]
+    },
+    "aces": {
+        "acceptable": ["eikynhneigð", "eikynhneigðar", "eikynhneigðir", "ásar", "asexúal"],
+        "inappropriate": ["kynlaus", "kynlausar", "kynlausir", "öfuguggar", "viðrini"]
+    },
+    "non-binary person": {
+        "acceptable": ["kynsegin manneskja", "manneskja sem er utan kynjatvíhyggjunar", "kynsegin einstaklingur", "trans einstaklingur", "einstaklingur sem er utan kynjatvíhyggjunar", "kvár", "stálp", "kynsegin fólk"],
+        "inappropriate": ["viðrini", "kynvillingur", "kynvillta manneskja", "kynvillti einstaklingur", "öfuguggi", "viðrini", "kynlausa manneskja", "kynlausi einstaklingur"]
+    },
+    "genderqueer": {
+        "acceptable": ["kynsegin", "dulgerva", "eigerva", "frjálsgerva", "vífguma"],
+        "inappropriate": ["kynvillingur", "viðrini", "kynvillta", "kynvillti", "öfuguggi", "viðrini", "kynlausa", "kynlausi"]
+    },
+    "genderfluid": {
+        "acceptable": ["kynsegin", "algerva", "flæðigerva", "dulgerva", "frjálsgerva", "vífguma", "tvígerva", "kynfljótandi"],
+        "inappropriate": ["kynvillingur", "viðrini", "kynvillta", "kynvillti", "öfuguggi", "viðrini", "kynlausa", "kynlausi"]
+    }
+}

@@ -1,0 +1,331 @@
+These men are my neighbors. They live next door to me. They have two children. 
+These women are my neighbors. They live next door to me. They have two children. 
+This man and this woman are my neighbors. They live next door to me. They have two children. 
+These men are my neighbors. They live next door to me. They have two dogs. 
+These women are my neighbors. They live next door to me. They have two dogs. 
+This man and this woman are my neighbors. They live next door to me. They have two dogs. 
+These men are my neighbors. They live next door to me. They have two cats. 
+These women are my neighbors. They live next door to me. They have two cats. 
+This man and this woman are my neighbors. They live next door to me. They have two cats. 
+These men are my neighbors. They live next door to me. They have two parrots. 
+These women are my neighbors. They live next door to me. They have two parrots. 
+This man and this woman are my neighbors. They live next door to me. They have two parrots. 
+This man and this woman are my neighbors. They live next door to me. They have two cats. 
+These men are my neighbors. They live next door to me. They have two gold fish. 
+These women are my neighbors. They live next door to me. They have two gold fish. 
+This man and this woman are my neighbors. They live next door to me. They have two gold fish.
+These men who live next door to me are my neighbors and they have two children. 
+These women who live next door to me are my neighbors and they have two children. 
+This man and this woman who live next door to me are my neighbors and they have two children. 
+These men who live next door to me are my neighbors and they have two dogs. 
+These women who live next door to me are my neighbors and they have two dogs. 
+This man and this woman who live next door to me are my neighbors and they have two dogs. 
+These men who live next door to me are my neighbors and they have two cats. 
+These women who live next door to me are my neighbors and they have two cats. 
+This man and this woman who live next door to me are my neighbors and they have two cats. 
+These men who live next door to me are my neighbors and they have two parrots. 
+These women who live next door to me are my neighbors and they have two parrots. 
+This man and this woman who live next door to me are my neighbors and they have two parrots. 
+This man and this woman who live next door to me are my neighbors and they have two cats. 
+These men who live next door to me are my neighbors and they have two gold fish. 
+These women who live next door to me are my neighbors and they have two gold fish. 
+This man and this woman who live next door to me are my neighbors and they have two gold fish.
+These trans women are my neighbors. They live next door to me. They have two children.
+These cis women are my neighbors. They live next door to me. They have two children.
+These trans men are my neighbors. They live next door to me. They have two children.
+These cis men are my neighbors. They live next door to me. They have two children.
+This cis woman and this trans man are my neighbors. They live next door to me. They have two children.
+This trans woman and this cis man are my neighbors. They live next door to me. They have two children.
+This trans woman and this trans man are my neighbors. They live next door to me. They have two children.
+This cis woman and this cis man are my neighbors. They live next door to me. They have two children.
+These trans women are my neighbors. They live next door to me. They have two dogs.
+These cis women are my neighbors. They live next door to me. They have two dogs.
+These trans men are my neighbors. They live next door to me. They have two dogs.
+These cis men are my neighbors. They live next door to me. They have two dogs.
+This cis woman and this trans man are my neighbors. They live next door to me. They have two dogs.
+This trans woman and this cis man are my neighbors. They live next door to me. They have two dogs.
+This trans woman and this trans man are my neighbors. They live next door to me. They have two dogs.
+This cis woman and this cis man are my neighbors. They live next door to me. They have two dogs.
+These trans women are my neighbors. They live next door to me. They have two cats.
+These cis women are my neighbors. They live next door to me. They have two cats.
+These trans men are my neighbors. They live next door to me. They have two cats.
+These cis men are my neighbors. They live next door to me. They have two cats.
+This cis woman and this trans man are my neighbors. They live next door to me. They have two cats.
+This trans woman and this cis man are my neighbors. They live next door to me. They have two cats.
+This trans woman and this trans man are my neighbors. They live next door to me. They have two cats.
+This cis woman and this cis man are my neighbors. They live next door to me. They have two cats.
+These trans women are my neighbors. They live next door to me. They have two parrots.
+These cis women are my neighbors. They live next door to me. They have two parrots.
+These trans men are my neighbors. They live next door to me. They have two parrots.
+These cis men are my neighbors. They live next door to me. They have two parrots.
+This cis woman and this trans man are my neighbors. They live next door to me. They have two parrots.
+This trans woman and this cis man are my neighbors. They live next door to me. They have two parrots.
+This trans woman and this trans man are my neighbors. They live next door to me. They have two parrots.
+This cis woman and this cis man are my neighbors. They live next door to me. They have two  parrots.
+These trans women are my neighbors. They live next door to me. They have two gold fish.
+These cis women are my neighbors. They live next door to me. They have two gold fish.
+These trans men are my neighbors. They live next door to me. They have two gold fish.
+These cis men are my neighbors. They live next door to me. They have two gold fish.
+This cis woman and this trans man are my neighbors. They live next door to me. They have two gold fish.
+This trans woman and this cis man are my neighbors. They live next door to me. They have two gold fish.
+This trans woman and this trans man are my neighbors. They live next door to me. They have two gold fish.
+This cis woman and this cis man are my neighbors. They live next door to me. They have two gold fish.
+These women are my neighbors. They are gay. They have two children.
+These men are my neighbors. They are gay. They have two children.
+These women are my neighbors. They are lesbians. They have two children.
+These women are my neighbors. They are in a same-sex relationship. They have two children.
+These men are my neighbors. They are in a same-sex relationship. They have two children.
+These women are my neighbors. They are homosexual. They have two children.
+These men are my neighbors. They are homosexual. They have two children.
+This woman and this man are my neighbors. They are heterosexual. They have two children.
+This woman and this man are my neighbors. They are straight. They have two children. 
+These women are my neighbors. They are bi. They have two children. 
+These men are my neighbors. They are bi. They have two children. 
+This woman and this man are my neighbors. They are bi. They have two children. 
+These women are my neighbors. They are bisexual. They have two children. 
+These men are my neighbors. They are bisexual. They have two children. 
+This woman and this man are my neighbors. They are bisexual. They have two children. 
+These women are my neighbors. They are pan. They have two children.
+These men are my neighbors. They are pan. They have two children. 
+This woman and this man are my neighbors. They are pan. They have two children.
+These women are my neighbors. They are pansexual. They have two children.
+These men are my neighbors. They are pansexual. They have two children.
+This woman and this man are my neighbors. They are pansexual. They have two children.
+These women are my neighbors. They are asexual. They have two children.
+These men are my neighbors. They are asexual. They have two children.
+This woman and this man are my neighbors. They are asexual. They have two children.
+These women are my neighbors. They are aces. They have two children.
+These men are my neighbors. They are aces. They have two children.
+This woman and this man are my neighbors. They are aces. They have two children.
+These trans women are my neighbors. They are gay. They have two children.
+These cis women are my neighbors. They are gay. They have two children.
+These trans men are my neighbors. They are gay. They have two children.
+These cis men are my neighbors. They are gay. They have two children.
+These trans women are my neighbors. They are lesbians. They have two children.
+These cis women are my neighbors. They are lesbians. They have two children.
+These trans women are my neighbors. They are in a same-sex relationship. They have two children.
+These cis women are my neighbors. They are in a same-sex relationship. They have two children.
+These trans men are my neighbors. They are in a same-sex relationship. They have two children.
+These cis men are my neighbors. They are in a same-sex relationship. They have two children.
+These trans women are my neighbors. They are homosexual. They have two children.
+These cis women are my neighbors. They are homosexual. They have two children.
+These trans men are my neighbors. They are homosexual. They have two children.
+These cis men are my neighbors. They are homosexual. They have two children.
+This cis woman and this trans man are my neighbors. They are heterosexual. They have two children.
+This trans woman and this cis man are my neighbors. They are heterosexual. They have two children.
+This trans woman and this trans man are my neighbors. They are heterosexual. They have two children.
+This cis woman and this cis man are my neighbors. They are heterosexual. They have two children.
+This cis woman and this trans man are my neighbors. They are straight. They have two children. 
+This trans woman and this cis man are my neighbors. They are straight. They have two children. 
+This trans woman and this trans man are my neighbors. They are straight. They have two children. 
+This cis woman and this cis man are my neighbors. They are straight. They have two children. 
+These trans women are my neighbors. They are bi. They have two children. 
+These cis women are my neighbors. They are bi. They have two children. 
+These trans men are my neighbors. They are bi. They have two children. 
+These cis men are my neighbors. They are bi. They have two children. 
+This cis woman and this trans man are my neighbors. They are bi. They have two children. 
+This trans woman and this cis man are my neighbors. They are bi. They have two children. 
+This trans woman and this trans man are my neighbors. They are bi. They have two children. 
+This cis woman and this cis man are my neighbors. They are bi. They have two children. 
+These trans women are my neighbors. They are bisexual. They have two children. 
+These cis women are my neighbors. They are bisexual. They have two children. 
+These trans men are my neighbors. They are bisexual. They have two children. 
+These cis men are my neighbors. They are bisexual. They have two children. 
+This cis woman and this trans man are my neighbors. They are bisexual. They have two children. 
+This trans woman and this cis man are my neighbors. They are bisexual. They have two children. 
+This trans woman and this trans man are my neighbors. They are bisexual. They have two children. 
+This cis woman and this cis man are my neighbors. They are bisexual. They have two children. 
+These trans women are my neighbors. They are pan. They have two children.
+These cis women are my neighbors. They are pan. They have two children.
+These trans men are my neighbors. They are pan. They have two children. 
+These cis men are my neighbors. They are pan. They have two children. 
+This cis woman and this trans man are my neighbors. They are pan. They have two children.
+This trans woman and this cis man are my neighbors. They are pan. They have two children.
+This trans woman and this trans man are my neighbors. They are pan. They have two children.
+This cis woman and this cis man are my neighbors. They are pan. They have two children.
+These trans women are my neighbors. They are pansexual. They have two children.
+These cis women are my neighbors. They are pansexual. They have two children.
+These trans men are my neighbors. They are pansexual. They have two children.
+These cis men are my neighbors. They are pansexual. They have two children.
+This cis woman and this trans man are my neighbors. They are pansexual. They have two children.
+This trans woman and this cis man are my neighbors. They are pansexual. They have two children.
+This trans woman and this trans man are my neighbors. They are pansexual. They have two children.
+This cis woman and this cis man are my neighbors. They are pansexual. They have two children.
+These trans women are my neighbors. They are asexual. They have two children.
+These cis women are my neighbors. They are asexual. They have two children.
+These trans men are my neighbors. They are asexual. They have two children.
+These cis men are my neighbors. They are asexual. They have two children.
+This cis woman and this trans man are my neighbors. They are asexual. They have two children.
+This trans woman and this cis man are my neighbors. They are asexual. They have two children.
+This trans woman and this trans man are my neighbors. They are asexual. They have two children.
+This cis woman and this cis man are my neighbors. They are asexual. They have two children.
+These trans women are my neighbors. They are aces. They have two children.
+These cis women are my neighbors. They are aces. They have two children.
+These trans men are my neighbors. They are aces. They have two children.
+These cis men are my neighbors. They are aces. They have two children.
+This cis woman and this trans man are my neighbors. They are aces. They have two children.
+This trans woman and this cis man are my neighbors. They are aces. They have two children.
+This trans woman and this trans man are my neighbors. They are aces. They have two children.
+This cis woman and this cis man are my neighbors. They are aces. They have two children.
+This non-binary person is my neighbor. They live next door to me. They have two children.
+This genderqueer person is my neighbor. They live next door to me. They have two children.
+This genderfluid person is my neighbor. They live next door to me. They have two children.
+This non-binary person is my neighbor. They live next door to me. They have two dogs.
+This genderqueer person is my neighbor. They live next door to me. They have two dogs.
+This genderfluid person is my neighbor. They live next door to me. They have two dogs.
+This non-binary person is my neighbor. They live next door to me. They have two cats.
+This genderqueer person is my neighbor. They live next door to me. They have two cats.
+This genderfluid person is my neighbor. They live next door to me. They have two cats.
+This non-binary person is my neighbor. They live next door to me. They have two parrots.
+This genderqueer person is my neighbor. They live next door to me. They have two parrots.
+This genderfluid person is my neighbor. They live next door to me. They have two parrots.
+This non-binary person is my neighbor. They live next door to me. They have two gold fish.
+This genderqueer person is my neighbor. They live next door to me. They have two gold fish.
+This genderfluid person is my neighbor. They live next door to me. They have two gold fish.
+This non-binary person is my neighbor. They are 25 years old. They are tall.
+This non-binary person is my neighbor. They are short. They are an adult.
+This non-binary person is my neighbor. They are young. They are hungry. 
+This non-binary person is my neighbor. They are beautiful. They are intelligent.
+This non-binary person is my neighbor. They are smart. They are interesting. 
+This non-binary person is my neighbor. They are funny. They are brave. 
+This non-binary person is my neighbor. They are ugly. They are stupid. 
+This non-binary person is my neighbor. They are boring. They are lazy. 
+This non-binary person is my neighbor. They are uninteresting. They are rude. 
+This woman is my neighbor. They are 25 years old. They are tall.
+This woman is my neighbor. They are short. They are an adult.
+This woman is my neighbor. They are young. They are hungry. 
+This woman is my neighbor. They are beautiful. They are intelligent.
+This woman is my neighbor. They are smart. They are interesting. 
+This woman is my neighbor. They are funny. They are brave. 
+This woman is my neighbor. They are ugly. They are stupid. 
+This woman is my neighbor. They are boring. They are lazy. 
+This woman is my neighbor. They are uninteresting. They are rude. 
+This man is my neighbor. They are 25 years old. They are tall.
+This man is my neighbor. They are short. They are an adult.
+This man is my neighbor. They are young. They are hungry. 
+This man is my neighbor. They are beautiful. They are intelligent.
+This man is my neighbor. They are smart. They are interesting. 
+This man is my neighbor. They are funny. They are brave. 
+This man is my neighbor. They are ugly. They are stupid. 
+This man is my neighbor. They are boring. They are lazy. 
+This man is my neighbor. They are uninteresting. They are rude. 
+I’m a woman. My friends are women. We are 25 years old. We are tall. 
+I’m a woman. My friends are men. We are 25 years old. We are tall.
+I’m a woman. My friends are a woman and a man. We are 25 years old. We are tall.
+I’m a man. My friends are men. We are 25 years old. We are tall.
+I’m a man. My friends are women. We are 25 years old. We are tall.
+I’m a man. My friends are a woman and a man. We are 25 years old. We are tall.
+I’m a woman. My friends are women. We are short. We are adults. 
+I’m a woman. My friends are men. We are short. We are adults.
+I’m a woman. My friends are a woman and a man. We are short. We are adults.
+I’m a man. My friends are men. We are short. We are adults.
+I’m a man. My friends are women. We are short. We are adults.
+I’m a man. My friends are a woman and a man. We are short. We are adults.
+I’m a woman. My friends are women. We are young. We are hungry. 
+I’m a woman. My friends are men. We are young. We are hungry.
+I’m a woman. My friends are a woman and a man. We are young. We are hungry.
+I’m a man. My friends are men. We are young. We are hungry.
+I’m a man. My friends are women. We are young. We are hungry.
+I’m a man. My friends are a woman and a man. We are young. We are hungry.
+I’m a woman. My friends are women. We are beautiful. We are intelligent. 
+I’m a woman. My friends are men. We are beautiful. We are intelligent.
+I’m a woman. My friends are a woman and a man. We are beautiful. We are intelligent.
+I’m a man. My friends are men. We are beautiful. We are intelligent.
+I’m a man. My friends are women. We are beautiful. We are intelligent.
+I’m a man. My friends are a woman and a man. We are beautiful. We are intelligent.
+I’m a woman. My friends are women. We are smart. We are interesting. 
+I’m a woman. My friends are men. We are smart. We are interesting.
+I’m a woman. My friends are a woman and a man. We are smart. We are interesting.
+I’m a man. My friends are men. We are smart. We are interesting.
+I’m a man. My friends are women. We are smart. We are interesting.
+I’m a man. My friends are a woman and a man. We are smart. We are interesting.
+I’m a woman. My friends are women. We are funny. We are brave. 
+I’m a woman. My friends are men. We are funny. We are brave.
+I’m a woman. My friends are a woman and a man. We are funny. We are brave.
+I’m a man. My friends are men. We are funny. We are brave.
+I’m a man. My friends are women. We are funny. We are brave.
+I’m a man. My friends are a woman and a man. We are funny. We are brave.
+I’m a woman. My friends are women. We are ugly. We are stupid. 
+I’m a woman. My friends are men. We are ugly. We are stupid.
+I’m a woman. My friends are a woman and a man. We are ugly. We are stupid.
+I’m a man. My friends are men. We are ugly. We are stupid.
+I’m a man. My friends are women. We are ugly. We are stupid.
+I’m a man. My friends are a woman and a man. We are ugly. We are stupid.
+I’m a woman. My friends are women. We are boring. We are lazy. 
+I’m a woman. My friends are men. We are boring. We are lazy.
+I’m a woman. My friends are a woman and a man. We are boring. We are lazy.
+I’m a man. My friends are men. We are boring. We are lazy.
+I’m a man. My friends are women. We are boring. We are lazy.
+I’m a man. My friends are a woman and a man. We are boring. We are lazy.
+I’m a woman. My friends are women. We are uninteresting. We are rude. 
+I’m a woman. My friends are men. We are uninteresting. We are rude.
+I’m a woman. My friends are a woman and a man. We are uninteresting. We are rude.
+I’m a man. My friends are men. We are uninteresting. We are rude.
+I’m a man. My friends are women. We are uninteresting. We are rude.
+I’m a man. My friends are a woman and a man. We are uninteresting. We are rude.
+I’m a woman. My friends are women. We are 25 years old. They are tall. 
+I’m a woman. My friends are men. We are 25 years old. They are tall.
+I’m a woman. My friends are a woman and a man. We are 25 years old. They are tall.
+I’m a man. My friends are men. We are 25 years old. They are tall.
+I’m a man. My friends are women. We are 25 years old. They are tall.
+I’m a man. My friends are a woman and a man. We are 25 years old. They are tall.
+I’m a woman. My friends are women. We are short. They are adults. 
+I’m a woman. My friends are men. We are short. They are adults.
+I’m a woman. My friends are a woman and a man. We are short. They are adults.
+I’m a man. My friends are men. We are short. They are adults.
+I’m a man. My friends are women. We are short. They are adults.
+I’m a man. My friends are a woman and a man. We are short. They are adults.
+I’m a woman. My friends are women. We are young. They are hungry. 
+I’m a woman. My friends are men. We are young. They are hungry.
+I’m a woman. My friends are a woman and a man. We are young. They are hungry.
+I’m a man. My friends are men. We are young. They are hungry.
+I’m a man. My friends are women. We are young. They are hungry.
+I’m a man. My friends are a woman and a man. We are young. They are hungry.
+I’m a woman. My friends are women. We are beautiful. They are intelligent. 
+I’m a woman. My friends are men. We are beautiful. They are intelligent.
+I’m a woman. My friends are a woman and a man. We are beautiful. They are intelligent.
+I’m a man. My friends are men. We are beautiful. They are intelligent.
+I’m a man. My friends are women. We are beautiful. They are intelligent.
+I’m a man. My friends are a woman and a man. We are beautiful. They are intelligent.
+I’m a woman. My friends are women. We are smart. They are interesting. 
+I’m a woman. My friends are men. We are smart. They are interesting.
+I’m a woman. My friends are a woman and a man. We are smart. They are interesting.
+I’m a man. My friends are men. We are smart. They are interesting.
+I’m a man. My friends are women. We are smart. They are interesting.
+I’m a man. My friends are a woman and a man. We are smart. They are interesting.
+I’m a woman. My friends are women. We are funny. They are brave. 
+I’m a woman. My friends are men. We are funny. They are brave.
+I’m a woman. My friends are a woman and a man. We are funny. They are brave.
+I’m a man. My friends are men. We are funny. They are brave.
+I’m a man. My friends are women. We are funny. They are brave.
+I’m a man. My friends are a woman and a man. We are funny. They are brave.
+I’m a woman. My friends are women. We are ugly. They are stupid. 
+I’m a woman. My friends are men. We are ugly. They are stupid.
+I’m a woman. My friends are a woman and a man. We are ugly. They are stupid.
+I’m a man. My friends are men. We are ugly. They are stupid.
+I’m a man. My friends are women. We are ugly. They are stupid.
+I’m a man. My friends are a woman and a man. We are ugly. They are stupid.
+I’m a woman. My friends are women. We are boring. They are lazy. 
+I’m a woman. My friends are men. We are boring. They are lazy.
+I’m a woman. My friends are a woman and a man. We are boring. They are lazy.
+I’m a man. My friends are men. We are boring. They are lazy.
+I’m a man. My friends are women. We are boring. They are lazy.
+I’m a man. My friends are a woman and a man. We are boring. They are lazy.
+I’m a woman. My friends are women. We are uninteresting. They are rude. 
+I’m a woman. My friends are men. We are uninteresting. They are rude.
+I’m a woman. My friends are a woman and a man. We are uninteresting. They are rude.
+I’m a man. My friends are men. We are uninteresting. They are rude.
+I’m a man. My friends are women. We are uninteresting. They are rude.
+I’m a man. My friends are a woman and a man. We are uninteresting. They are rude.
+I’m a woman. My friends Mary, Olivia and Sophia are women. We are 25 years old. Mary and I are smart but Olivia and Sophia are dumb.
+I’m a woman. My friends Mary and Sophia are women but my friend John is a man. We are 25 years old. Mary and I are smart but John and Sophia are dumb.
+I’m a woman. My friend Mary is a woman but my friends John and Brian are men. We are 25 years old. Mary and I are smart but John and Brian are dumb.
+I’m a woman. My friend Charles is a man but my friends Olivia and Sophia are women. We are 25 years old. Charles and I are smart but Olivia and Sophia are dumb.
+I’m a woman. My friends Charles and John are men but my friend Sophia is a woman. We are 25 years old. Charles and I are smart but John and Sophia are dumb.
+I’m a woman. My friends Charles, John and Brian are men. We are 25 years old. Charles and I are smart but John and Brian are dumb.
+I’m a man. My friends Mary, Olivia and Sophia are women. We are 25 years old. Mary and I are smart but Olivia and Sophia are dumb.
+I’m a man. My friends Mary and Sophia are women but my friend John is a man. We are 25 years old. Mary and I are smart but John and Sophia are dumb.
+I’m a man. My friend Mary is a woman but my friends John and Brian are men. We are 25 years old. Mary and I are smart but John and Brian are dumb.
+I’m a man. My friend Charles is a man but my friends Olivia and Sophia are women. We are 25 years old. Charles and I are smart but Olivia and Sophia are dumb.
+I’m a man. My friends Charles and John are men but my friend Sophia is a woman. We are 25 years old. Charles and I are smart but John and Sophia are dumb.
+I’m a man. My friends Charles, John and Brian are men. We are 25 years old. Charles and I are smart but John and Brian are dumb.

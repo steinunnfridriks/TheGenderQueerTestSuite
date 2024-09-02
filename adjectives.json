@@ -1,0 +1,222 @@
+[
+  {
+    "english": "old",
+    "forms": ["gamall", "gamlir", "gömul", "gamlar", "gamalt"],
+    "male_singular": ["gamall"],
+    "male_plural": ["gamlir"],
+    "female_singular": ["gömul"],
+    "female_plural": ["gamlar"],
+    "neuter_singular": ["gamalt"],
+    "neuter_plural": ["gömul"],
+    "sentiment": "neutral"
+  },
+  {
+      "english": "tall",
+      "forms": ["hávaxinn", "hávaxnir", "hávaxin", "hávaxnar", "hávaxið"],
+      "male_singular": ["hávaxinn"],
+      "male_plural": ["hávaxnir"],
+      "female_singular": ["hávaxin"],
+      "female_plural": ["hávaxnar"],
+      "neuter_singular": ["hávaxið"],
+      "neuter_plural": ["hávaxin"],
+      "sentiment": "neutral"
+    },
+    {
+      "english": "short",
+      "forms": ["lágvaxinn", "lágvaxnir", "lágvaxin", "lágvaxnar", "lágvaxið"],
+      "male_singular": ["lágvaxinn"],
+      "male_plural": ["lágvaxnir"],
+      "female_singular": ["lágvaxin"],
+      "female_plural": ["lágvaxnar"],
+      "neuter_singular": ["lágvaxið"],
+      "neuter_plural": ["lágvaxin"],
+      "sentiment": "neutral"
+    },
+    {
+      "english": "adult",
+      "forms": ["fullorðinn", "fullorðnir", "fullorðin", "fullorðnar", "fullorðið"],
+      "male_singular": ["fullorðinn"],
+      "male_plural": ["fullorðnir"],
+      "female_singular": ["fullorðin"],
+      "female_plural": ["fullorðnar"],
+      "neuter_singular": ["fullorðið"],
+      "neuter_plural": ["fullorðin"],
+      "sentiment": "neutral"
+    },
+    {
+      "english": "adults",
+      "forms": ["fullorðnir", "fullorðin", "fullorðnar"],
+      "male_singular": [],
+      "male_plural": ["fullorðnir"],
+      "female_singular": [],
+      "female_plural": ["fullorðnar"],
+      "neuter_singular": [],
+      "neuter_plural": ["fullorðin"],
+      "sentiment": "neutral"
+    },
+    {
+      "english": "young",
+      "forms": ["ungur", "ungir", "ung", "ungar", "ungt"],
+      "male_singular": ["ungur"],
+      "male_plural": ["ungir"],
+      "female_singular": ["ung"],
+      "female_plural": ["ungar"],
+      "neuter_singular": ["ungt"],
+      "neuter_plural": ["ung"],
+      "sentiment": "neutral"
+    },
+    {
+      "english": "hungry",
+      "forms": ["svangur", "svangir", "svöng", "svangar", "svangt"],
+      "male_singular": ["svangur"],
+      "male_plural": ["svangir"],
+      "female_singular": ["svöng"],
+      "female_plural": ["svangar"],
+      "neuter_singular": ["svangt"],
+      "neuter_plural": ["svöng"],
+      "sentiment": "neutral"
+    },
+    {
+      "english": "beautiful",
+      "forms": ["fallegur", "fallegir", "falleg", "fallegar", "fallegt"],
+      "male_singular": ["fallegur"],
+      "male_plural": ["fallegir"],
+      "female_singular": ["falleg"],
+      "female_plural": ["fallegar"],
+      "neuter_singular": ["fallegt"],
+      "neuter_plural": ["falleg"],
+      "sentiment": "positive"
+    },
+    {
+      "english": "intelligent",
+      "forms": ["gáfaður", "gáfaðir", "gáfuð", "gáfaðar", "gáfað", "snjall", "snjallir", "snjöll", "snjallar", "snjallt", "klár", "klárir", "klárar", "klárt"],
+      "male_singular": ["gáfaður", "snjall", "klár"],
+      "male_plural": ["gáfaðir", "snjallir", "klárir"],
+      "female_singular": ["gáfuð", "snjöll", "klár"],
+      "female_plural": ["gáfaðar", "snjallar", "klárar"],
+      "neuter_singular": ["gáfað", "snjallt", "klárt"],
+      "neuter_plural": ["gáfuð", "snjöll", "klár"],
+      "sentiment": "positive"
+    },    
+    {
+      "english": "smart",
+      "forms": ["gáfaður", "gáfaðir", "gáfuð", "gáfaðar", "gáfað", "snjall", "snjallir", "snjöll", "snjallar", "snjallt", "klár", "klárir", "klárar", "klárt"],
+      "male_singular": ["gáfaður", "snjall", "klár"],
+      "male_plural": ["gáfaðir", "snjallir", "klárir"],
+      "female_singular": ["gáfuð", "snjöll", "klár"],
+      "female_plural": ["gáfaðar", "snjallar", "klárar"],
+      "neuter_singular": ["gáfað", "snjallt", "klárt"],
+      "neuter_plural": ["gáfuð", "snjöll", "klár"],
+      "sentiment": "positive"
+    },
+    {
+      "english": "interesting",
+      "forms": ["áhugaverður", "áhugaverðir", "áhugaverð", "áhugaverðar", "áhugavert"],
+      "male_singular": ["áhugaverður"],
+      "male_plural": ["áhugaverðir"],
+      "female_singular": ["áhugaverð"],
+      "female_plural": ["áhugaverðar"],
+      "neuter_singular": ["áhugavert"],
+      "neuter_plural": ["áhugaverð"],
+      "sentiment": "positive"
+    },
+    {
+      "english": "funny",
+      "forms": ["fyndinn", "fyndnir", "fyndin", "fyndnar", "fyndið"],
+      "male_singular": ["fyndinn"],
+      "male_plural": ["fyndnir"],
+      "female_singular": ["fyndin"],
+      "female_plural": ["fyndnar"],
+      "neuter_singular": ["fyndið"],
+      "neuter_plural": ["fyndin"],
+      "sentiment": "positive"
+    },
+    {
+      "english": "brave",
+      "forms": ["hugrakkur", "hugrakkir", "hugrökk", "hugrakkar", "hugrakkt"],
+      "male_singular": ["hugrakkur"],
+      "male_plural": ["hugrakkir"],
+      "female_singular": ["hugrökk"],
+      "female_plural": ["hugrakkar"],
+      "neuter_singular": ["hugrakkt"],
+      "neuter_plural": ["hugrökk"],
+      "sentiment": "positive"
+    },
+    {
+      "english": "ugly",
+      "forms": ["ljótur", "ljótir", "ljót", "ljótar", "ljótt"],
+      "male_singular": ["ljótur"],
+      "male_plural": ["ljótir"],
+      "female_singular": ["ljót"],
+      "female_plural": ["ljótar"],
+      "neuter_singular": ["ljótt"],
+      "neuter_plural": ["ljót"],
+      "sentiment": "negative"
+    },
+    {
+      "english": "stupid",
+      "forms": ["heimskur", "heimskir", "heimsk", "heimskar", "heimskt"],
+      "male_singular": ["heimskur"],
+      "male_plural": ["heimskir"],
+      "female_singular": ["heimsk"],
+      "female_plural": ["heimskar"],
+      "neuter_singular": ["heimskt"],
+      "neuter_plural": ["heimsk"],
+      "sentiment": "negative"
+    },
+    {
+      "english": "boring",
+      "forms": ["leiðinlegur", "leiðinlegir", "leiðinleg", "leiðinlegar", "leiðinlegt"],
+      "male_singular": ["leiðinlegur"],
+      "male_plural": ["leiðinlegir"],
+      "female_singular": ["leiðinleg"],
+      "female_plural": ["leiðinlegar"],
+      "neuter_singular": ["leiðinlegt"],
+      "neuter_plural": ["leiðinleg"],
+      "sentiment": "negative"
+    },
+    {
+      "english": "lazy",
+      "forms": ["latur", "latir", "löt", "latar", "latt"],
+      "male_singular": ["latur"],
+      "male_plural": ["latir"],
+      "female_singular": ["löt"],
+      "female_plural": ["latar"],
+      "neuter_singular": ["latt"],
+      "neuter_plural": ["löt"],
+      "sentiment": "negative"
+    },
+    {
+      "english": "uninteresting",
+      "forms": ["óáhugaverður", "óáhugaverðir", "óáhugaverð", "óáhugaverðar", "óáhugavert"],
+      "male_singular": ["óáhugaverður"],
+      "male_plural": ["óáhugaverðir"],
+      "female_singular": ["óáhugaverð"],
+      "female_plural": ["óáhugaverðar"],
+      "neuter_singular": ["óáhugavert"],
+      "neuter_plural": ["óáhugaverð"],
+      "sentiment": "negative"
+    },
+    {
+      "english": "rude",
+      "forms": ["dónalegur", "dónalegir", "dónaleg", "dónalegar", "dónalegt"],
+      "male_singular": ["dónalegur"],
+      "male_plural": ["dónalegir"],
+      "female_singular": ["dónaleg"],
+      "female_plural": ["dónalegar"],
+      "neuter_singular": ["dónalegt"],
+      "neuter_plural": ["dónaleg"],
+      "sentiment": "negative"
+    },
+    {
+      "english": "dumb",
+      "forms": ["vitlaus", "vitlausir", "vitlausar", "vitlaust", "heimskir", "heimskar", "heimsk", "heimskt"],
+      "male_singular": ["vitlaus", "heimskur"],
+      "male_plural": ["vitlausir", "heimskir"],
+      "female_singular": ["vitlaus", "heimsk"],
+      "female_plural": ["vitlausar", "heimskar"],
+      "neuter_singular": ["vitlaust", "heimskt"],
+      "neuter_plural": ["vitlaus", "heimsk"],
+      "sentiment": "negative"
+    }
+  ]
