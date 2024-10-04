@@ -11,7 +11,7 @@ class LGBTQAITranslationGrader:
     
     The class asumes that the input comes from two txt files, one containing the original,
     English sentences of the GenderQueer test suite and the other containing the translations
-    in the target language (in this case, Icelandic). The class can easily be modified for
+    in the target language (in this case, Icelandic). The class can be modified to suit
     other languages.
     """
 

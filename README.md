@@ -1,18 +1,18 @@
 # The GenderQueer Test Suite
 
-The GenderQueer Test Suite is a novel evaluation set for assessing machine translation (MT) systems' capabilities in handling gender-diverse and queer-inclusive content. It's designed for English to Icelandic translations but can be adapted for other languages quite easily. As MT quality improves, there is an increasing need for specialized evaluation methods that address nuanced aspects of language and identity. The suite evaluates MT systems on various aspects of gender-inclusive translation, including pronoun and adjective agreement, LGBTQIA+ terminology accuracy, and the impact of explicit gender specifications.
+The GenderQueer Test Suite is a novel evaluation set for assessing machine translation (MT) systems' capabilities in handling gender-diverse and queer-inclusive content. It's designed for English to Icelandic translations but can be adapted for other languages. As MT quality improves, there is an increasing need for specialized evaluation methods that address nuanced aspects of language and identity. The suite evaluates MT systems on various aspects of gender-inclusive translation, including pronoun and adjective agreement, LGBTQIA+ terminology accuracy, and the impact of explicit gender specifications.
 
 The test suite aims to address five key areas of evaluation:
 
-1. Pronoun translation: Assessing translation accuracy when translating the third-person pronoun 'they' from English to Icelandic with respect to gender agreement.
+1. Pronoun translation: Assessing translation accuracy when translating the third-person pronoun "they" from English to Icelandic with respect to gender agreement.
 
-2. The singular 'they': Assessing whether MT systems are able to translate the gender-neutral, singular 'they' as it is used in English to the more rigid grammatical gender system of Icelandic.
+2. The singular "they": Assessing whether MT systems are able to translate the gender-neutral, singular "they" as it is used in English, i.e. when "they" is used to refer to a single person who is either non-binary, female or male, to the more rigid grammatical gender system of Icelandic. 
 
-3. Adjective agreement: Evaluating the translation of adjectives with respect to gender forms in the target language. Additionally, the gender distribution of adjective translations is examined in order to see if a particular gender form is used more or less often than others, potentially indicating gender bias. Furthermore, gender distributions for translations of adjectives with a positive, negative and neutral connotations are evaluated.
+3. Adjective agreement: Evaluating the translation of adjectives with respect to gender forms in the target language. Translation accuracy for each gender form is examined individually as well as accuracy for translations of adjectives with positive, negative and neutral sentiment.
 
 4. LGBTQIA+ terminology: Examining the translation accuracy of LGBTQIA+-specific terms, including an assessment of whether translations are current and culturally appropriate or potentially outdated or inappropriate.
 
-5. Influence of explicit gender information: Investigating whether explicitly specifying a subject as cis or trans affects the translation of 'they' compared to similar sentences without such specification.
+5. Influence of explicit gender information: Investigating whether explicitly defining a subject as cis or trans affects the translation accuracy of "they" compared to that of similar sentences without such specifications.
 
 The test suite primarily consists of short paragraphs (3-4 sentences long) designed to provide context and challenge MT systems across these five dimensions. Additionally, we include 16 single-sentence examples for comparison of sentence-level and paragraph-level translations. Each passage contains explicit information about the gender of the subject or subjects mentioned.
 

@@ -3,7 +3,7 @@ import re
 from nltk import word_tokenize, sent_tokenize
 
 """
-    This program automatically grades translations of text examples including specifically
+    This program automatically grades translations of text examples including explicitly
     gendered subjects referred to by the pronoun "they" (an example follows). It is created 
     specifically for Icelandic but can be modified to suit other languages.
 
@@ -11,8 +11,8 @@ from nltk import word_tokenize, sent_tokenize
     Icelandic: Þessir menn eru nágrannar mínir. Þeir búa í næsta húsi við mig. Þeir eiga tvö börn.
     
     The scoring system is composed of various metrics. The overall score shows the proportion
-    of translations of the pronoun 'they' translated correctly with respect to the specified
-    gender of the subject(s). 
+    of correct translations of the pronoun "they" with respect to the specified gender of the 
+    subject(s). 
 
     The scoring is then broken down based on various translation factors. First, translations of 
     long text examples (defined as at least 3 sentences) is compared to the translations of 
@@ -21,14 +21,14 @@ from nltk import word_tokenize, sent_tokenize
     of singe- and multi-phrased translations.
 
     The translation accuracy of each gender is then presented, i.e. feminine, masculine and
-    neuter versions of the pronoun 'they'. Also included are translations of the singular
-    'they' which, in the GenderQueer test suite, can either refer to a non-binary person
-    or a single woman or a man. We note that the use of the singular 'they' to refer to 
+    neuter versions of the pronoun "they". Also included are translations of the singular
+    "they" which, in the GenderQueer test suite, can either refer to a non-binary person
+    or a single woman or a man. We note that the use of the singular "they" to refer to 
     a person with a binary gender is not convensional in Icelandic and therefore it is expected
     that a MT system will not do well in this part. A system is given 1 points if the translation
-    is 'hán' (the most used translation of the singular 'they' in Icelandic), 'hún' (she) or 
-    'hann' (he), respectively. It receives 0.5 points if it is 'þau' (the plural neuter form),
-    'þær' (the plural feminine form) or 'þeir' (the plural masculine form), respectively.
+    is "hán" (the most used translation of the singular 'they' in Icelandic), "hún" (she) or 
+    "hann" (he), respectively. It receives 0.5 points if it is "þau" (the plural neuter form),
+    "þær" (the plural feminine form) or "þeir" (the plural masculine form), respectively.
 
     Translation accuracy of each gender is then broken down depending on whether the genders
     are specified to be either trans or cis or a combination of the two (i.e. "this trans man
@@ -36,7 +36,7 @@ from nltk import word_tokenize, sent_tokenize
 
     Finally, translations instances as specified above are compared with regards to whether
     or not the translated text example includes "they have two children" or not. This is meant
-    to show whether the system has a heteronormative trend towards the neuter form of 'they'
+    to show whether the system has a heteronormative trend towards the neuter form of "they"
     in these circumstances, i.e. when the subjects are specified to have children (implying
     but not specifically stating that they have these children together).
 
@@ -78,9 +78,13 @@ def identify_subject_only_they(text):
         return "male_plural_trans"    
     elif "these cis men" in text:
         return "male_plural_cis"
-    elif "this man and this woman" in text or "this woman and this man" in text:
+    elif "this man and this woman" in text:
         return "mixed_unspecified"
-    elif "this cis woman and this trans man" in text or "this trans woman and this cis man" in text: 
+    elif "this woman and this man" in text:
+        return "mixed_unspecified"
+    elif "this cis woman and this trans man" in text:
+        return "mixed_trans_cis"
+    elif "this trans woman and this cis man" in text: 
         return "mixed_trans_cis" 
     elif "this cis woman and this cis man" in text: 
         return "mixed_cis"
@@ -88,7 +92,7 @@ def identify_subject_only_they(text):
         return "mixed_trans"
 
 def identify_subject_only_we_or_singular(text):
-    if "non-binary person" in text:
+    if "non-binary person" in text or "genderqueer person" in text or "genderfluid person" in text:
         return "non-binary"
     elif "this woman" in text:
         return "female_singular"
@@ -179,280 +183,272 @@ def analyze_translations(icelandic_lines_only_they, english_lines_only_they, ice
         
         if len(no_sents) < 3:
             if pronoun == "female_plural_unspecified" or pronoun == "female_plural_cis" or pronoun == "female_plural_trans":
-                pronoun_counts["short"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+                pronoun_counts["short"] += 1
                 pronoun_correct["short"] += ice_tokens.count("þær")
             elif pronoun == "male_plural_unspecified" or pronoun == "male_plural_cis" or pronoun == "male_plural_trans":
-                pronoun_counts["short"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+                pronoun_counts["short"] += 1
                 pronoun_correct["short"] += ice_tokens.count("þeir")
-            elif pronoun == "mixed_plural_unspecified" or pronoun == "mixed_plural_cis" or pronoun == "mixed_plural_trans":
-                pronoun_counts["short"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+            elif pronoun == "mixed_unspecified" or pronoun == "mixed_cis" or pronoun == "mixed_trans":
+                pronoun_counts["short"] += 1
                 pronoun_correct["short"] += ice_tokens.count("þau")
 
         else:
+            ice_sents = ice_line.strip().split(". ")
+            if len(ice_sents) != len(no_sents):
+                ice_tokens = word_tokenize(ice_line.lower())
+            else:
+                ice_sents = ice_sents[1:]
+                ice_tokens = word_tokenize(" ".join(ice_sents).lower())
 
             if pronoun == "female_plural_unspecified":
                 if "they have two children" in eng_line.lower():
-                    pronoun_counts["feminine_unspecified_children"] += 1 # Breyta svo þetta telji tvö tilvik
-                    if "þær" in ice_tokens:
-                        pronoun_correct["feminine_unspecified_children"] += 1 # og þetta telji hversu mörg þær er þarna
+                    pronoun_counts["feminine_unspecified_children"] += 2
+                    pronoun_correct["feminine_unspecified_children"] += ice_tokens.count("þær")
                 else:
-                    pronoun_counts["feminine_unspecified_nochildren"] += 1
-                    if "þær" in ice_tokens:
-                        pronoun_correct["feminine_unspecified_nochildren"] += 1
+                    pronoun_counts["feminine_unspecified_nochildren"] += 2
+                    pronoun_correct["feminine_unspecified_nochildren"] += ice_tokens.count("þær")
 
-                pronoun_counts["feminine"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["feminine_unspecified"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["long"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))                
+                pronoun_counts["feminine"] += 2
+                pronoun_counts["feminine_unspecified"] += 2
+                pronoun_counts["long"] += 2              
                 pronoun_correct["feminine"] += ice_tokens.count("þær")
                 pronoun_correct["feminine_unspecified"] += ice_tokens.count("þær")
                 pronoun_correct["long"] += ice_tokens.count("þær")
 
             elif pronoun == "female_plural_trans": 
                 if "they have two children" in eng_line.lower():
-                    pronoun_counts["feminine_trans_children"] += 1
-                    if "þær" in ice_tokens:
-                        pronoun_correct["feminine_trans_children"] += 1
+                    pronoun_counts["feminine_trans_children"] += 2
+                    pronoun_correct["feminine_trans_children"] += ice_tokens.count("þær")
                 else:
-                    pronoun_counts["feminine_trans_nochildren"] += 1
-                    if "þær" in ice_tokens:
-                        pronoun_correct["feminine_trans_nochildren"] += 1
+                    pronoun_counts["feminine_trans_nochildren"] += 2
+                    pronoun_correct["feminine_trans_nochildren"] += ice_tokens.count("þær")
 
-                pronoun_counts["feminine"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["feminine_trans"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["long"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))                
+                pronoun_counts["feminine"] += 2
+                pronoun_counts["feminine_trans"] += 2
+                pronoun_counts["long"] += 2                
                 pronoun_correct["feminine"] += ice_tokens.count("þær")
                 pronoun_correct["feminine_trans"] += ice_tokens.count("þær")
                 pronoun_correct["long"] += ice_tokens.count("þær")
 
             elif pronoun == "female_plural_cis":
                 if "they have two children" in eng_line.lower():
-                    pronoun_counts["feminine_cis_children"] += 1
-                    if "þær" in ice_tokens:
-                        pronoun_correct["feminine_cis_children"] += 1
+                    pronoun_counts["feminine_cis_children"] += 2
+                    pronoun_correct["feminine_cis_children"] += ice_tokens.count("þær")
                 else:
-                    pronoun_counts["feminine_cis_nochildren"] += 1
-                    if "þær" in ice_tokens:
-                        pronoun_correct["feminine_cis_nochildren"] += 1
+                    pronoun_counts["feminine_cis_nochildren"] += 2
+                    pronoun_correct["feminine_cis_nochildren"] += ice_tokens.count("þær")
 
-                pronoun_counts["feminine"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["feminine_cis"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["long"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+                pronoun_counts["feminine"] += 2
+                pronoun_counts["feminine_cis"] += 2
+                pronoun_counts["long"] += 2
                 pronoun_correct["feminine"] += ice_tokens.count("þær")
                 pronoun_correct["feminine_cis"] += ice_tokens.count("þær")
                 pronoun_correct["long"] += ice_tokens.count("þær")
 
             elif pronoun == "male_plural_unspecified":
                 if "they have two children" in eng_line.lower():
-                    pronoun_counts["masculine_unspecified_children"] += 1
-                    if "þeir" in ice_tokens:
-                        pronoun_correct["masculine_unspecified_children"] += 1
+                    pronoun_counts["masculine_unspecified_children"] += 2
+                    pronoun_correct["masculine_unspecified_children"] += ice_tokens.count("þeir")
                 else:
-                    pronoun_counts["masculine_unspecified_nochildren"] += 1
-                    if "þeir" in ice_tokens:
-                        pronoun_correct["masculine_unspecified_nochildren"] += 1
+                    pronoun_counts["masculine_unspecified_nochildren"] += 2
+                    pronoun_correct["masculine_unspecified_nochildren"] += ice_tokens.count("þeir")
 
-                pronoun_counts["masculine"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["masculine_unspecified"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))            
-                pronoun_counts["long"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))                
+                pronoun_counts["masculine"] += 2
+                pronoun_counts["masculine_unspecified"] += 2        
+                pronoun_counts["long"] += 2                
                 pronoun_correct["masculine"] += ice_tokens.count("þeir")
                 pronoun_correct["masculine_unspecified"] += ice_tokens.count("þeir")
                 pronoun_correct["long"] += ice_tokens.count("þeir")
 
             elif pronoun == "male_plural_trans": 
                 if "they have two children" in eng_line.lower():
-                    pronoun_counts["masculine_trans_children"] += 1
-                    if "þeir" in ice_tokens:
-                        pronoun_correct["masculine_trans_children"] += 1
+                    pronoun_counts["masculine_trans_children"] += 2
+                    pronoun_correct["masculine_trans_children"] += ice_tokens.count("þeir")
                 else:
-                    pronoun_counts["masculine_trans_nochildren"] += 1
-                    if "þeir" in ice_tokens:
-                        pronoun_correct["masculine_trans_nochildren"] += 1
+                    pronoun_counts["masculine_trans_nochildren"] += 2
+                    pronoun_correct["masculine_trans_nochildren"] += ice_tokens.count("þeir")
 
-                pronoun_counts["masculine"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["masculine_trans"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["long"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+                pronoun_counts["masculine"] += 2
+                pronoun_counts["masculine_trans"] += 2
+                pronoun_counts["long"] += 2
                 pronoun_correct["masculine"] += ice_tokens.count("þeir")
                 pronoun_correct["masculine_trans"] += ice_tokens.count("þeir")
                 pronoun_correct["long"] += ice_tokens.count("þeir")
 
             elif pronoun == "male_plural_cis":
                 if "they have two children" in eng_line.lower():
-                    pronoun_counts["masculine_cis_children"] += 1
-                    if "þeir" in ice_tokens:
-                        pronoun_correct["masculine_cis_children"] += 1
+                    pronoun_counts["masculine_cis_children"] += 2
+                    pronoun_correct["masculine_cis_children"] += ice_tokens.count("þeir")
                 else:
-                    pronoun_counts["masculine_cis_nochildren"] += 1
-                    if "þeir" in ice_tokens:
-                        pronoun_correct["masculine_cis_nochildren"] += 1
+                    pronoun_counts["masculine_cis_nochildren"] += 2
+                    pronoun_correct["masculine_cis_nochildren"] += ice_tokens.count("þeir")
 
-                pronoun_counts["masculine"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["masculine_cis"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["long"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+                pronoun_counts["masculine"] += 2
+                pronoun_counts["masculine_cis"] += 2
+                pronoun_counts["long"] += 2
                 pronoun_correct["masculine"] += ice_tokens.count("þeir")
                 pronoun_correct["masculine_cis"] += ice_tokens.count("þeir")
                 pronoun_correct["long"] += ice_tokens.count("þeir")
 
             elif pronoun == "mixed_unspecified": 
                 if "they have two children" in eng_line.lower():
-                    pronoun_counts["neuter_unspecified_children"] += 1
-                    if "þau" in ice_tokens:
-                        pronoun_correct["neuter_unspecified_children"] += 1
+                    pronoun_counts["neuter_unspecified_children"] += 2
+                    pronoun_correct["neuter_unspecified_children"] += ice_tokens.count("þau")
                 else:
-                    pronoun_counts["neuter_unspecified_nochildren"] += 1
-                    if "þau" in ice_tokens:
-                        pronoun_correct["neuter_unspecified_nochildren"] += 1
+                    pronoun_counts["neuter_unspecified_nochildren"] += 2
+                    pronoun_correct["neuter_unspecified_nochildren"] += ice_tokens.count("þau")
 
-                pronoun_counts["neuter"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["neuter_unspecified"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["long"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+                pronoun_counts["neuter"] += 2
+                pronoun_counts["neuter_unspecified"] += 2
+                pronoun_counts["long"] += 2
                 pronoun_correct["neuter"] += ice_tokens.count("þau")
                 pronoun_correct["neuter_unspecified"] += ice_tokens.count("þau")
                 pronoun_correct["long"] += ice_tokens.count("þau")
 
             elif pronoun == "mixed_trans": 
                 if "they have two children" in eng_line.lower():
-                    pronoun_counts["neuter_trans_children"] += 1
-                    if "þau" in ice_tokens:
-                        pronoun_correct["neuter_trans_children"] += 1
+                    pronoun_counts["neuter_trans_children"] += 2
+                    pronoun_correct["neuter_trans_children"] += ice_tokens.count("þau")
                 else:
-                    pronoun_counts["neuter_trans_nochildren"] += 1
-                    if "þau" in ice_tokens:
-                        pronoun_correct["neuter_trans_nochildren"] += 1
+                    pronoun_counts["neuter_trans_nochildren"] += 2
+                    pronoun_correct["neuter_trans_nochildren"] += ice_tokens.count("þau")
 
-                pronoun_counts["neuter"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["neuter_trans"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["long"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+                pronoun_counts["neuter"] += 2
+                pronoun_counts["neuter_trans"] += 2
+                pronoun_counts["long"] += 2
                 pronoun_correct["neuter"] += ice_tokens.count("þau")
                 pronoun_correct["neuter_trans"] += ice_tokens.count("þau")
                 pronoun_correct["long"] += ice_tokens.count("þau")
 
             elif pronoun == "mixed_cis": 
                 if "they have two children" in eng_line.lower():
-                    pronoun_counts["neuter_cis_children"] += 1
-                    if "þau" in ice_tokens:
-                        pronoun_correct["neuter_cis_children"] += 1
+                    pronoun_counts["neuter_cis_children"] += 2
+                    pronoun_correct["neuter_cis_children"] += ice_tokens.count("þau")
                 else:
-                    pronoun_counts["neuter_cis_nochildren"] += 1
-                    if "þau" in ice_tokens:
-                        pronoun_correct["neuter_cis_nochildren"] += 1
+                    pronoun_counts["neuter_cis_nochildren"] += 2
+                    pronoun_correct["neuter_cis_nochildren"] += ice_tokens.count("þau")
 
-                pronoun_counts["neuter"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["neuter_cis"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["long"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+                pronoun_counts["neuter"] += 2
+                pronoun_counts["neuter_cis"] += 2
+                pronoun_counts["long"] += 2
                 pronoun_correct["neuter"] += ice_tokens.count("þau")
                 pronoun_correct["neuter_cis"] += ice_tokens.count("þau")
                 pronoun_correct["long"] += ice_tokens.count("þau")
 
             elif pronoun == "mixed_trans_cis":
                 if "they have two children" in eng_line.lower():
-                    pronoun_counts["neuter_cis_and_trans_children"] += 1
-                    if "þau" in ice_tokens:
-                        pronoun_correct["neuter_cis_and_trans_children"] += 1
+                    pronoun_counts["neuter_cis_and_trans_children"] += 2
+                    pronoun_correct["neuter_cis_and_trans_children"] += ice_tokens.count("þau")
                 else:
-                    pronoun_counts["neuter_cis_and_trans_nochildren"] += 1
-                    if "þau" in ice_tokens:
-                        pronoun_correct["neuter_cis_and_trans_nochildren"] += 1
+                    pronoun_counts["neuter_cis_and_trans_nochildren"] += 2
+                    pronoun_correct["neuter_cis_and_trans_nochildren"] += ice_tokens.count("þau")
 
-                pronoun_counts["neuter"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
-                pronoun_counts["neuter_cis_and_trans"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))            
-                pronoun_counts["long"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+                pronoun_counts["neuter"] += 2
+                pronoun_counts["neuter_cis_and_trans"] += 2            
+                pronoun_counts["long"] += 2
                 pronoun_correct["neuter"] += ice_tokens.count("þau")
                 pronoun_correct["neuter_cis_and_trans"] += ice_tokens.count("þau")
                 pronoun_correct["long"] += ice_tokens.count("þau")
 
     for eng_line, ice_line in zip(english_lines_singular_we, icelandic_lines_singular_we):
         pronoun = identify_subject_only_we_or_singular(eng_line.lower())
-        ice_tokens = word_tokenize(ice_line.lower())
+        ice_sents = ice_line.strip().split(". ")
+        if len(ice_sents) != len(no_sents):
+            ice_tokens = word_tokenize(ice_line.lower())
+        else:
+            ice_sents = ice_sents[1:]
+            ice_tokens = word_tokenize(" ".join(ice_sents).lower())
 
         if pronoun == "non-binary" or pronoun == "female_singular" or pronoun == "male_singular":
-            pronoun_counts["singular_they"] += (ice_tokens.count("þær") + ice_tokens.count("þeir") + ice_tokens.count("þau") + ice_tokens.count("hán") + ice_tokens.count("hún")+ice_tokens.count("hann"))
+            pronoun_counts["singular_they"] += 2
 
         if pronoun == "non-binary":
             if "they have two children" in eng_line.lower():
-                pronoun_counts["singular_they_children"] += 1
-                if "hán" in ice_tokens:
-                    pronoun_correct["singular_they_children"] += 1
-                elif "þau" in ice_tokens:
-                    pronoun_correct["singular_they_children"] += 0.5
+                pronoun_counts["singular_they_children"] += 2
+                pronoun_correct["singular_they_children"] += ice_tokens.count("hán")
+                pronoun_correct["singular_they_children"] += (ice_tokens.count("þau") / 2)
             else:
-                pronoun_counts["singular_they_nochildren"] += 1
-                if "hán" in ice_tokens:
-                    pronoun_correct["singular_they_nochildren"] += 1
-                elif "þau" in ice_tokens:
-                    pronoun_correct["singular_they_nochildren"] += 0.5
+                pronoun_counts["singular_they_nochildren"] += 2
+                pronoun_correct["singular_they_nochildren"] += ice_tokens.count("hán")
+                pronoun_correct["singular_they_nochildren"] += (ice_tokens.count("þau") / 2)
 
-            if "hán" in ice_tokens:
-                pronoun_correct["singular_they"] += ice_tokens.count("hán")
-            if "þau" in ice_tokens:
-                pronoun_correct["singular_they"] += sum((0.5 for p in ice_tokens if p == "þau"))
-
+            pronoun_correct["singular_they"] += ice_tokens.count("hán")
+            pronoun_correct["singular_they"] += (ice_tokens.count("þau") / 2)
+            pronoun_counts["long"] += 2
+            pronoun_correct["long"] += ice_tokens.count("hán")
+            pronoun_correct["long"] += (ice_tokens.count("þau") / 2)
         elif pronoun == "female_singular":
             if "they have two children" in eng_line.lower():
-                pronoun_counts["singular_they_children"] += 1
-                if "hún" in ice_tokens:
-                    pronoun_correct["singular_they_children"] += 1
-                elif "þær" in ice_tokens:
-                    pronoun_correct["singular_they_children"] += 0.5
+                pronoun_counts["singular_they_children"] += 2
+                pronoun_correct["singular_they_children"] += ice_tokens.count("hún")
+                pronoun_correct["singular_they_children"] += (ice_tokens.count("þær") / 2)
             else:
-                pronoun_counts["singular_they_nochildren"] += 1
-                if "hún" in ice_tokens:
-                    pronoun_correct["singular_they_nochildren"] += 1
-                elif "þær" in ice_tokens:
-                    pronoun_correct["singular_they_nochildren"] += 0.5
+                pronoun_counts["singular_they_nochildren"] += 2
+                pronoun_correct["singular_they_nochildren"] += ice_tokens.count("hún")
+                pronoun_correct["singular_they_nochildren"] += (ice_tokens.count("þær") / 2)
 
-            if "hún" in ice_tokens:
-                pronoun_correct["singular_they"] += ice_tokens.count("hún")
-            if "þær" in ice_tokens:
-                pronoun_correct["singular_they"] += sum((0.5 for p in ice_tokens if p == "þær"))
+            pronoun_correct["singular_they"] += ice_tokens.count("hún")
+            pronoun_correct["singular_they"] += (ice_tokens.count("þær") / 2)
+            pronoun_counts["long"] += 2
+            pronoun_correct["long"] += ice_tokens.count("hún")
+            pronoun_correct["long"] += (ice_tokens.count("þær") / 2)
 
         elif pronoun == "male_singular":
             if "they have two children" in eng_line.lower():
-                pronoun_counts["singular_they_children"] += 1
-                if "hann" in ice_tokens:
-                    pronoun_correct["singular_they_children"] += 1
-                elif "þeir" in ice_tokens:
-                    pronoun_correct["singular_they_children"] += 0.5
+                pronoun_counts["singular_they_children"] += 2
+                pronoun_correct["singular_they_children"] += ice_tokens.count("hann")
+                pronoun_correct["singular_they_children"] += (ice_tokens.count("þeir") / 2)
             else:
-                pronoun_counts["singular_they_nochildren"] += 1
-                if "hann" in ice_tokens:
-                    pronoun_correct["singular_they_nochildren"] += 1
-                elif "þeir" in ice_tokens:
-                    pronoun_correct["singular_they_nochildren"] += 0.5
+                pronoun_counts["singular_they_nochildren"] += 2
+                pronoun_correct["singular_they_nochildren"] += ice_tokens.count("hann")
+                pronoun_correct["singular_they_nochildren"] += (ice_tokens.count("þeir") / 2)
 
-            if "hann" in ice_tokens:
-                pronoun_correct["singular_they"] += ice_tokens.count("hann")
-            if "þeir" in ice_tokens:
-                pronoun_correct["singular_they"] += sum((0.5 for p in ice_tokens if p == "þeir"))
+            pronoun_correct["singular_they"] += ice_tokens.count("hann")
+            pronoun_correct["singular_they"] += (ice_tokens.count("þeir") / 2)
+            pronoun_counts["long"] += 2
+            pronoun_correct["long"] += ice_tokens.count("hann")
+            pronoun_correct["long"] += (ice_tokens.count("þeir") / 2)
 
     for eng_line, ice_line in zip(english_lines_we_they, icelandic_lines_we_they):
 
         pronouns = identify_subject_we_and_they(eng_line.lower())
         they_pronoun = pronouns[1]
 
-        ice_tokens = word_tokenize(ice_line.lower())
+        ice_sents = ice_line.strip().split(". ")
+        if len(ice_sents) != len(no_sents):
+            ice_tokens = word_tokenize(ice_line.lower())
+        else:
+            ice_sents = ice_sents[1:]
+            ice_tokens = word_tokenize(" ".join(ice_sents).lower())
 
         if they_pronoun == "female_they":
             pronoun_counts["feminine"] += 1
             pronoun_counts["feminine_unspecified"] += 1
             pronoun_correct["feminine"] += ice_tokens.count("þær")
             pronoun_correct["feminine_unspecified"] += ice_tokens.count("þær")
+            pronoun_counts["long"] += 1
+            pronoun_correct["long"] += ice_tokens.count("þær")
         elif they_pronoun == "male_they":
             pronoun_counts["masculine"] += 1
             pronoun_counts["masculine_unspecified"] += 1
             pronoun_correct["masculine"] += ice_tokens.count("þeir")
             pronoun_correct["masculine_unspecified"] += ice_tokens.count("þeir")
+            pronoun_counts["long"] += 1
+            pronoun_correct["long"] += ice_tokens.count("þeir")
         elif they_pronoun == "mixed_they":
             pronoun_counts["neuter"] += 1
             pronoun_counts["neuter_unspecified"] += 1
             pronoun_correct["neuter"] += ice_tokens.count("þau")
             pronoun_correct["neuter_unspecified"] += ice_tokens.count("þau")
+            pronoun_counts["long"] += 1
+            pronoun_correct["long"] += ice_tokens.count("þau")
 
     results["singular_they_accuracy"] = pronoun_correct["singular_they"] / pronoun_counts["singular_they"] * 100 if pronoun_counts["singular_they"] > 0 else 0
 
     results["feminine_pronoun_accuracy"] = pronoun_correct["feminine"] / pronoun_counts["feminine"] * 100 if pronoun_counts["feminine"] > 0 else 0
     results["masculine_pronoun_accuracy"] = pronoun_correct["masculine"] / pronoun_counts["masculine"] * 100 if pronoun_counts["masculine"] > 0 else 0
     results["neuter_pronoun_accuracy"] = pronoun_correct["neuter"] / pronoun_counts["neuter"] * 100 if pronoun_counts["neuter"] > 0 else 0
-    results["overall_pronoun_accuracy"] = (pronoun_correct["feminine"] + pronoun_correct["masculine"] + pronoun_correct["neuter"] + pronoun_correct["singular_they"]) / (pronoun_counts["feminine"] + pronoun_counts["masculine"] + pronoun_counts["neuter"] + pronoun_counts["singular_they"]) * 100 if (pronoun_counts["feminine"] + pronoun_counts["masculine"] + pronoun_counts["neuter"] + pronoun_counts["singular_they"]) > 0 else 0
+    results["overall_pronoun_accuracy"] = (pronoun_correct["feminine"] + pronoun_correct["masculine"] + pronoun_correct["neuter"] + pronoun_correct["singular_they"] + pronoun_correct["short"]) / (pronoun_counts["feminine"] + pronoun_counts["masculine"] + pronoun_counts["neuter"] + pronoun_counts["singular_they"] + pronoun_counts["short"]) * 100 if (pronoun_counts["feminine"] + pronoun_counts["masculine"] + pronoun_counts["neuter"] + pronoun_counts["singular_they"] + pronoun_counts["short"]) > 0 else 0
     
     results["feminine_unspecified_accuracy"] = pronoun_correct["feminine_unspecified"] / pronoun_counts["feminine_unspecified"] * 100 if pronoun_counts["feminine_unspecified"] > 0 else 0
     results["masculine_unspecified_accuracy"] = pronoun_correct["masculine_unspecified"] / pronoun_counts["masculine_unspecified"] * 100 if pronoun_counts["masculine_unspecified"] > 0 else 0
@@ -486,6 +482,9 @@ def analyze_translations(icelandic_lines_only_they, english_lines_only_they, ice
     results["masculine_cis_nochildren_accuracy"] = pronoun_correct["masculine_cis_nochildren"] / pronoun_counts["masculine_cis_nochildren"] * 100 if pronoun_counts["masculine_cis_nochildren"] > 0 else 0
     results["neuter_cis_nochildren_accuracy"] = pronoun_correct["neuter_cis_nochildren"] / pronoun_counts["neuter_cis_nochildren"] * 100 if pronoun_counts["neuter_cis_nochildren"] > 0 else 0
     results["neuter_cis_and_trans_nochildren_accuracy"] = pronoun_correct["neuter_cis_and_trans_nochildren"] / pronoun_counts["neuter_cis_and_trans_nochildren"] * 100 if pronoun_counts["neuter_cis_and_trans_nochildren"] > 0 else 0
+    
+    results["singular_they_children_accuracy"] = pronoun_correct["singular_they_children"] / pronoun_counts["singular_they_children"] * 100 if pronoun_counts["neuter_cis_and_trans_nochildren"] > 0 else 0
+    results["singular_they_nochildren_accuracy"] = pronoun_correct["singular_they_nochildren"] / pronoun_counts["singular_they_nochildren"] * 100 if pronoun_counts["neuter_cis_and_trans_nochildren"] > 0 else 0
 
     results["long_accuracy"] = pronoun_correct["long"] / pronoun_counts["long"] * 100 if pronoun_counts["long"] > 0 else 0
     results["short_accuracy"] = pronoun_correct["short"] / pronoun_counts["short"] * 100 if pronoun_counts["short"] > 0 else 0
@@ -494,15 +493,16 @@ def analyze_translations(icelandic_lines_only_they, english_lines_only_they, ice
 
 
 def main():
-    icelandic_lines_only_they, english_lines_only_they, icelandic_lines_singular_we, english_lines_singular_we, icelandic_lines_we_they, english_lines_we_they = load_text_files("gold_standard.txt", "english_examples.txt")
+    icelandic_lines_only_they, english_lines_only_they, icelandic_lines_singular_we, english_lines_singular_we, icelandic_lines_we_they, english_lines_we_they = load_text_files("/home/steinunn/doktorsverkefni/wmttestsuite24/genderqueer/en-is/Unbabel-Tower70B.en-is.txt", "english_examples.txt")
 
     results, pronoun_counts, pronoun_correct = analyze_translations(icelandic_lines_only_they, english_lines_only_they, icelandic_lines_singular_we, english_lines_singular_we, icelandic_lines_we_they, english_lines_we_they)
     
-    print(f"Overall translation accuracy: {results['overall_pronoun_accuracy']:.2f}% (Correct: {(pronoun_correct['feminine'] + pronoun_correct['masculine'] + pronoun_correct['neuter'] + pronoun_correct['singular_they'])}, Total: {(pronoun_counts['feminine'] + pronoun_counts['masculine'] + pronoun_counts['neuter'] + pronoun_counts['singular_they'])}) \n")
+    print(f"Overall translation accuracy: {results['overall_pronoun_accuracy']:.2f}% (Correct: {(pronoun_correct['feminine'] + pronoun_correct['masculine'] + pronoun_correct['neuter'] + pronoun_correct['singular_they'] + pronoun_correct['short'])}, Total: {(pronoun_counts['feminine'] + pronoun_counts['masculine'] + pronoun_counts['neuter'] + pronoun_counts['singular_they'] + pronoun_counts['short'])}) \n")
 
     print(f"Translation accuracy for long text examples (> 3 sentences): {results['long_accuracy']:.2f}% (Correct: {pronoun_correct['long']}, Total: {pronoun_counts['long']})")
     print(f"Translation accuracy for short text examples (< 3 sentences): {results['short_accuracy']:.2f}% (Correct: {pronoun_correct['short']}, Total: {pronoun_counts['short']}) \n")
 
+    print("The following only applies to the long examples:")
     print(f"Overall translation accuracy for singular 'they': {results['singular_they_accuracy']:.2f}% (Correct: {pronoun_correct['singular_they']}, Total: {pronoun_counts['singular_they']})")
     print(f"Overall translation accuracy for feminine 'they': {results['feminine_pronoun_accuracy']:.2f}% (Correct: {pronoun_correct['feminine']}, Total: {pronoun_counts['feminine']})")
     print(f"Overall translation accuracy for masculine 'they': {results['masculine_pronoun_accuracy']:.2f}% (Correct: {pronoun_correct['masculine']}, Total: {pronoun_counts['masculine']})")
@@ -533,8 +533,7 @@ def main():
     print(f"Translation accuracy for masculine 'they have two children' when specified to be cis: {results['masculine_cis_children_accuracy']:.2f}% (Correct: {pronoun_correct['masculine_cis_children']}, Total: {pronoun_counts['masculine_cis_children']})")
     print(f"Translation accuracy for neuter 'they have two children' when specified to be cis: {results['neuter_cis_children_accuracy']:.2f}% (Correct: {pronoun_correct['neuter_cis_children']}, Total: {pronoun_counts['neuter_cis_children']})")
     print(f"Translation accuracy for neuter 'they have two children' when specified to be cis and trans: {results['neuter_cis_and_trans_children_accuracy']:.2f}% (Correct: {pronoun_correct['neuter_cis_and_trans_children']}, Total: {pronoun_counts['neuter_cis_and_trans_children']}) \n")
-
-
+    
     print(f"Translation accuracy for feminine 'they' with no mention of having children when unspecified: {results['feminine_unspecified_nochildren_accuracy']:.2f}% (Correct: {pronoun_correct['feminine_unspecified_nochildren']}, Total: {pronoun_counts['feminine_unspecified_nochildren']})")
     print(f"Translation accuracy for masculine 'they' with no mention of having children when unspecified: {results['masculine_unspecified_nochildren_accuracy']:.2f}% (Correct: {pronoun_correct['masculine_unspecified_nochildren']}, Total: {pronoun_counts['masculine_unspecified_nochildren']})")
     print(f"Translation accuracy for neuter 'they' with no mention of having children when unspecified: {results['neuter_unspecified_nochildren_accuracy']:.2f}% (Correct: {pronoun_correct['neuter_unspecified_nochildren']}, Total: {pronoun_counts['neuter_unspecified_nochildren']}) \n")
@@ -547,6 +546,10 @@ def main():
     print(f"Translation accuracy for masculine 'they' with no mention of having children when specified to be cis: {results['masculine_cis_nochildren_accuracy']:.2f}% (Correct: {pronoun_correct['masculine_cis_nochildren']}, Total: {pronoun_counts['masculine_cis_nochildren']})")
     print(f"Translation accuracy for neuter 'they' with no mention of having children when specified to be cis: {results['neuter_cis_nochildren_accuracy']:.2f}% (Correct: {pronoun_correct['neuter_cis_nochildren']}, Total: {pronoun_counts['neuter_cis_nochildren']})")
     print(f"Translation accuracy for neuter 'they' with no mention of having children when specified to be cis and trans: {results['neuter_cis_and_trans_nochildren_accuracy']:.2f}% (Correct: {pronoun_correct['neuter_cis_and_trans_nochildren']}, Total: {pronoun_counts['neuter_cis_and_trans_nochildren']}) \n")
+
+    print(f"Translation accuracy for singular 'they have two children': {results['singular_they_children_accuracy']:.2f}% (Correct: {pronoun_correct['singular_they_children']}, Total: {pronoun_counts['singular_they_children']})")
+    print(f"Translation accuracy for singular 'they' with no mention of children: {results['singular_they_nochildren_accuracy']:.2f}% (Correct: {pronoun_correct['singular_they_nochildren']}, Total: {pronoun_counts['singular_they_nochildren']})")
+
 
 if __name__ == "__main__":
    main()

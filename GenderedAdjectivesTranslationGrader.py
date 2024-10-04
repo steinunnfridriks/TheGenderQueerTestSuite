@@ -10,15 +10,15 @@ from nltk import word_tokenize
     have either a positive, negative or a neutral sentiment. The program analyses
     the translations and returns an overall accuracy score based on how often
     the translations respect the specified gender of the subject(s) of the
-    text examples. It additionally breaks down the gender distributions of
-    the translated adjectives, specifying the proportion of each sentiment
-    for each gender. This is intended to show whether negatively charged
+    text examples. Translation accuracy for each gender is also evaluated as
+    well as the translation accuracy for each sentiment for each gender (positive,
+    negative and neutral). This is intended to show whether negatively charged
     adjectives get translated as a specific gender more often than others. 
 
     The program asumes that the input comes from two txt files, one containing 
     the original, English sentences of the GenderQueer test suite and the other 
     containing the translations in the target language (in this case, Icelandic). 
-    The program can easily be modified for other languages.
+    The program can be modified to suit other languages.
     
 """
 
@@ -42,7 +42,7 @@ def load_text_files(icelandic_file, english_file):
     return icelandic_lines_singular_we, english_lines_singular_we, icelandic_lines_we_they, english_lines_we_they, icelandic_lines_names, english_lines_names
 
 def identify_subject_only_we_or_singular(text):
-    if "non-binary person" in text:
+    if "non-binary person" in text or "genderqueer person" in text or "genderfluid person" in text:
         return "non-binary"
     elif "this woman" in text:
         return "female_singular"
@@ -102,53 +102,6 @@ def identify_subject_names(text):
         return ["male_we", "male_group1", "male_group2"]
 
 
-def analyze_adjective_translations(icelandic_text, adj_database, english_text):
-    translation_counts = {
-        "masculine": {"positive": 0, "negative": 0, "neutral": 0},
-        "feminine": {"positive": 0, "negative": 0, "neutral": 0},
-        "neuter": {"positive": 0, "negative": 0, "neutral": 0}
-    }
-    total_adjectives = 0
-    eng_tokens = word_tokenize(english_text.lower())
-    ice_tokens = word_tokenize(icelandic_text.lower())
-
-    # Keep track of matched forms to avoid double counting
-    matched_forms = set()
-
-    for adj in adj_database:
-        if adj['english'] in eng_tokens:
-            total_adjectives += 1
-        
-        if "hún" in ice_tokens:
-            for form in adj['female_singular']:
-                if form in ice_tokens and form not in matched_forms:
-                    translation_counts["feminine"][adj['sentiment']] += 1
-                    matched_forms.add(form)
-                    break
-        else:
-            for form in adj['male_plural'] + adj['male_singular']:
-                if form in ice_tokens and form not in matched_forms:
-                    translation_counts["masculine"][adj['sentiment']] += 1
-                    matched_forms.add(form)
-                    break
-            
-            if translation_counts["masculine"][adj['sentiment']] == 0:
-                for form in adj['female_plural']:
-                    if form in ice_tokens and form not in matched_forms:
-                        translation_counts["feminine"][adj['sentiment']] += 1
-                        matched_forms.add(form)
-                        break
-            
-            if translation_counts["masculine"][adj['sentiment']] == 0 and translation_counts["feminine"][adj['sentiment']] == 0:
-                for form in adj['neuter_plural'] + adj['neuter_singular']:
-                    if form in ice_tokens and form not in matched_forms:
-                        translation_counts["neuter"][adj['sentiment']] += 1
-                        matched_forms.add(form)
-                        break
-
-    return translation_counts, total_adjectives
-
-
 def analyze_translations(icelandic_lines_singular_we, english_lines_singular_we,icelandic_lines_we_they, english_lines_we_they, icelandic_lines_names, english_lines_names, adj_database):
 
     results = {
@@ -162,174 +115,171 @@ def analyze_translations(icelandic_lines_singular_we, english_lines_singular_we,
     total_adjectives = 0
     adjectives_correct = 0
 
-
     for eng_line, ice_line in zip(english_lines_singular_we, icelandic_lines_singular_we):
+        total_adjectives += 2
         pronoun = identify_subject_only_we_or_singular(eng_line.lower())
         ice_tokens = word_tokenize(ice_line.lower())
-                
-        if pronoun == "non-binary":
-            true_count = 0
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['neuter_singular']):
-                    if true_count == 2:
-                        break
-                    adjectives_correct += 1
-                    true_count += 1
-        elif pronoun == "female_singular":
-            true_count = 0
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['female_singular']):
-                    if true_count == 2:
-                        break
-                    adjectives_correct += 1
-                    true_count += 1        
-        elif pronoun == "male_singular":
-            true_count = 0
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['male_singular']):
-                    if true_count == 2:
-                        break
-                    adjectives_correct += 1
-                    true_count += 1
+        current_adjectives = []
 
-        elif pronoun == "female_plural":
-            true_count = 0
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['female_plural']):
-                    if true_count == 2:
-                        break
-                    adjectives_correct += 1
-                    true_count += 1        
-        elif pronoun == "male_plural":
-            true_count = 0
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['male_plural']):
-                    if true_count == 2:
-                        break
-                    adjectives_correct += 1
-                    true_count += 1
-        elif pronoun == "mixed":
-            true_count = 0
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['neuter_plural']):
-                    if true_count == 2:
-                        break
-                    adjectives_correct += 1
-                    true_count += 1        
+        eng_tokens = word_tokenize(eng_line.lower())
+        for adj in adj_database:
+            if adj['english'] in eng_tokens:
+                current_adjectives.append(adj['english'])
 
+        for adj in adj_database:
+            for token in current_adjectives:
+                if adj['english']==token:
 
-        translation_counts, adj_count = analyze_adjective_translations(ice_line, adj_database, eng_line)
-        total_adjectives += adj_count
+                    if pronoun == "non-binary":
+                        if any(a in adj['neuter_singular'] for a in ice_tokens):
+                            adjectives_correct += 1
+                            results['translation_analysis']['neuter'][adj["sentiment"]] += 1
+                        elif any(a in adj['neuter_plural'] for a in ice_tokens):
+                            adjectives_correct += 0.5
+                            results['translation_analysis']['neuter'][adj["sentiment"]] += 0.5
 
-        for gender in translation_counts:
-            for sentiment in translation_counts[gender]:
-                results["translation_analysis"][gender][sentiment] += translation_counts[gender][sentiment]
+                    elif pronoun == "female_singular":
+                        if any(a in adj['female_singular'] for a in ice_tokens):
+                            adjectives_correct += 1
+                            results['translation_analysis']['feminine'][adj["sentiment"]] += 1
+                        if any(a in adj['female_plural'] for a in ice_tokens):
+                            adjectives_correct += 0.5
+                            results['translation_analysis']['feminine'][adj["sentiment"]] += 0.5
+
+                    elif pronoun == "male_singular":
+                        if any(a in adj['male_singular'] for a in ice_tokens):
+                            adjectives_correct += 1
+                            results['translation_analysis']['masculine'][adj["sentiment"]] += 1
+                        if any(a in adj['male_plural'] for a in ice_tokens):
+                            adjectives_correct += 0.5
+                            results['translation_analysis']['masculine'][adj["sentiment"]] += 0.5
+
+                    elif pronoun == "female_plural":
+                        if any(a in adj['female_plural'] for a in ice_tokens):
+                            adjectives_correct += 1
+                            results['translation_analysis']['feminine'][adj["sentiment"]] += 1
+
+                    elif pronoun == "male_plural":
+                        if any(a in adj['male_plural'] for a in ice_tokens):
+                            adjectives_correct += 1
+                            results['translation_analysis']['masculine'][adj["sentiment"]] += 1
+
+                    elif pronoun == "mixed":
+                        if any(a in adj['neuter_plural'] for a in ice_tokens):
+                            adjectives_correct += 1
+                            results['translation_analysis']['neuter'][adj["sentiment"]] += 1
+
         
     for eng_line, ice_line in zip(english_lines_we_they, icelandic_lines_we_they):
+        total_adjectives += 2
         pronouns = identify_subject_we_and_they(eng_line)
         we_pronoun = pronouns[0]
         they_pronoun = pronouns[1]
+        current_adjectives = []
 
-        ice_tokens = word_tokenize(ice_line.lower())
+        eng_tokens = word_tokenize(eng_line.lower())
+        for adj in adj_database:
+            if adj['english'] in eng_tokens:
+                current_adjectives.append(adj['english'])
         
-        if we_pronoun == "female_we":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['female_plural']):
-                    adjectives_correct += 1
-                    break
-        elif we_pronoun == "male_we":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['male_plural']):
-                    adjectives_correct += 1
-                    break
-        elif we_pronoun == "mixed_we":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['neuter_plural']):
-                    adjectives_correct += 1
-                    break
+        ice_tokens = word_tokenize(ice_line.lower())
 
-        if they_pronoun == "female_they":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['female_plural']):
-                    adjectives_correct += 1
-                    break
-        elif they_pronoun == "male_they":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['male_plural']):
-                    adjectives_correct += 1
-                    break
-        elif they_pronoun == "mixed_they":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['neuter_plural']):
-                    adjectives_correct += 1
-                    break
+        for adj in adj_database:
+            if adj['english']==current_adjectives[0]:
 
-        translation_counts, adj_count = analyze_adjective_translations(ice_line, adj_database, eng_line)
-        total_adjectives += adj_count
-        for gender in translation_counts:
-            for sentiment in translation_counts[gender]:
-                results["translation_analysis"][gender][sentiment] += translation_counts[gender][sentiment]
+                if we_pronoun == "female_we":
+                    if any(a in adj['female_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['feminine'][adj["sentiment"]] += 1        
+                elif we_pronoun == "male_we":
+                    if any(a in adj['male_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results["translation_analysis"]["masculine"][adj["sentiment"]] += 1
+                elif we_pronoun == "mixed_we":
+                    if any(a in adj['neuter_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results["translation_analysis"]["neuter"][adj["sentiment"]] += 1
+
+            elif adj['english']==current_adjectives[1]:
+                if they_pronoun == "female_they":
+                    if any(a in adj['female_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['feminine'][adj["sentiment"]] += 1
+                elif they_pronoun == "male_they":
+                    if any(a in adj['male_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results["translation_analysis"]["masculine"][adj["sentiment"]] += 1
+                elif they_pronoun == "mixed_they":
+                    if any(a in adj['neuter_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results["translation_analysis"]["neuter"][adj["sentiment"]] += 1
 
 
     for eng_line, ice_line in zip(english_lines_names, icelandic_lines_names):
+        total_adjectives += 3
         ice_tokens = word_tokenize(ice_line)
         pronouns = identify_subject_names(eng_line)
         we_pronoun = pronouns[0]
         group1 = pronouns[1]
         group2 = pronouns[2]
+        current_adjectives = []
 
-        if we_pronoun == "female_we":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['female_plural']):
-                    adjectives_correct += 1
-                    break        
-        elif we_pronoun == "male_we":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['male_plural']):
-                    adjectives_correct += 1
-                    break
-        elif we_pronoun == "mixed_we":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['neuter_plural']):
-                    adjectives_correct += 1
-                    break
-        if group1 == "female_group1":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['female_plural']):
-                    adjectives_correct += 1
-                    break
-        elif group1 == "male_group1":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['male_plural']):
-                    adjectives_correct += 1
-                    break
-        elif group1 == "mixed_group1":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['neuter_plural']):
-                    adjectives_correct += 1
-                    break
-        if group2 == "female_group2":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['female_plural']):
-                    adjectives_correct += 1
-                    break
-        elif group2 == "male_group2":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['male_plural']):
-                    adjectives_correct += 1
-                    break
-        elif group2 == "mixed_group2":
-            for adj in adj_database:
-                if any(form in ice_tokens for form in adj['neuter_plural']):
-                    adjectives_correct += 1
-                    break
+        eng_tokens = word_tokenize(eng_line.lower())
+        for adj in adj_database:
+            if adj['english'] in eng_tokens:
+                current_adjectives.append(adj['english'])        
 
-        translation_counts, adj_count = analyze_adjective_translations(ice_line, adj_database, eng_line)
-        total_adjectives += adj_count
+        for adj in adj_database:
+            if adj['english']==current_adjectives[0]:
 
-        for gender in translation_counts:
-            for sentiment in translation_counts[gender]:
-                results["translation_analysis"][gender][sentiment] += translation_counts[gender][sentiment]
+                if we_pronoun == "female_we":
+                    if any(a in adj['female_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['feminine'][adj["sentiment"]] += 1        
+
+                elif we_pronoun == "male_we":
+                    if any(a in adj['male_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['masculine'][adj["sentiment"]] += 1        
+
+                elif we_pronoun == "mixed_we":
+                    if any(a in adj['neuter_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['neuter'][adj["sentiment"]] += 1        
+
+            elif adj['english']==current_adjectives[1]:
+
+                if group1 == "female_group1":
+                    if any(a in adj['female_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['feminine'][adj["sentiment"]] += 1        
+
+                elif group1 == "male_group1":
+                    if any(a in adj['male_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['masculine'][adj["sentiment"]] += 1        
+
+                elif group1 == "mixed_group1":
+                    if any(a in adj['neuter_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['neuter'][adj["sentiment"]] += 1        
+
+            elif adj['english']==current_adjectives[2]:
+
+                if group2 == "female_group2":
+                    if any(a in adj['female_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['feminine'][adj["sentiment"]] += 1        
+
+                elif group2 == "male_group2":
+                    if any(a in adj['male_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['masculine'][adj["sentiment"]] += 1        
+
+                elif group2 == "mixed_group2":
+                    if any(a in adj['neuter_plural'] for a in ice_tokens):
+                        adjectives_correct += 1
+                        results['translation_analysis']['neuter'][adj["sentiment"]] += 1        
 
 
     results["adjectives_accuracy"] = (adjectives_correct / total_adjectives) * 100
@@ -339,7 +289,7 @@ def analyze_translations(icelandic_lines_singular_we, english_lines_singular_we,
 def main():
     adj_database = load_adjective_database('adjectives.json')
 
-    icelandic_lines_singular_we, english_lines_singular_we, icelandic_lines_we_they, english_lines_we_they, icelandic_lines_names, english_lines_names = load_text_files("gold_standard.txt", "english_examples.txt")
+    icelandic_lines_singular_we, english_lines_singular_we, icelandic_lines_we_they, english_lines_we_they, icelandic_lines_names, english_lines_names = load_text_files("/home/steinunn/doktorsverkefni/wmttestsuite24/genderqueer/en-is/Unbabel-Tower70B.en-is.txt", "english_examples.txt")
 
     results, adjectives_correct, total_adjectives = analyze_translations(icelandic_lines_singular_we, english_lines_singular_we,icelandic_lines_we_they, english_lines_we_they, icelandic_lines_names, english_lines_names, adj_database)
     
@@ -350,22 +300,21 @@ def main():
 
     total_adjectives = sum(sum(gender_data.values()) for gender_data in results['translation_analysis'].values())
 
-    print("\nOverall Gender Distribution for Translation of Adjectives:")
-    for gender in results['translation_analysis']:
-        gender_total = sum(results['translation_analysis'][gender].values())
-        gender_percentage = (gender_total / total_adjectives * 100) if total_adjectives > 0 else 0
-        print(f"  {gender.capitalize()}: {gender_total} ({gender_percentage:.2f}%)")
+    print("\nTranslation Accuracy Per Gender:")
+    print(f"Translation accuracy for feminine adjectives: {(sum(results['translation_analysis']['feminine'].values()) / 71)*100:.2f}")
+    print(f"Translation accuracy for masculine adjectives: {(sum(results['translation_analysis']['masculine'].values()) / 71)*100:.2f}")
+    print(f"Translation accuracy for neuter adjectives: {(sum(results['translation_analysis']['neuter'].values()) / 164)*100:.2f}")
 
-    print("\nDetailed Sentiment Analysis by Gender:")
-    for gender in results['translation_analysis']:
-        gender_total = sum(results['translation_analysis'][gender].values())
-        print(f"  {gender.capitalize()}:")
-        for sentiment, count in results['translation_analysis'][gender].items():
-            gender_sentiment_percentage = (count / gender_total * 100) if gender_total > 0 else 0
-            overall_sentiment_percentage = (count / total_adjectives * 100) if total_adjectives > 0 else 0
-            print(f"    {sentiment.capitalize()}: {count} "
-                  f"({gender_sentiment_percentage:.2f}% of {gender}, "
-                  f"{overall_sentiment_percentage:.2f}% overall)")
+    print("\nSentiment Analysis by Gender:")
+    print(f"Translation accuracy for feminine adjectives with a positive sentiment: {(results['translation_analysis']['feminine']['positive'] / 24)*100:.2f}")
+    print(f"Translation accuracy for feminine adjectives with a negative sentiment: {(results['translation_analysis']['feminine']['negative'] / 25)*100:.2f}")
+    print(f"Translation accuracy for feminine adjectives with a neutral sentiment: {(results['translation_analysis']['feminine']['neutral'] / 22)*100:.2f}")
+    print(f"Translation accuracy for masculine adjectives with a positive sentiment: {(results['translation_analysis']['masculine']['positive'] / 24)*100:.2f}")
+    print(f"Translation accuracy for masculine adjectives with a negative sentiment: {(results['translation_analysis']['masculine']['negative'] / 25)*100:.2f}")
+    print(f"Translation accuracy for masculine adjectives with a neutral sentiment: {(results['translation_analysis']['masculine']['neutral'] / 22)*100:.2f}")
+    print(f"Translation accuracy for neuter adjectives with a positive sentiment: {(results['translation_analysis']['neuter']['positive'] / 54)*100:.2f}")
+    print(f"Translation accuracy for neuter adjectives with a negative sentiment: {(results['translation_analysis']['neuter']['negative'] / 52)*100:.2f}")
+    print(f"Translation accuracy for neuter adjectives with a neutral sentiment: {(results['translation_analysis']['neuter']['neutral'] / 58)*100:.2f}")
 
 if __name__ == "__main__":
    main()
