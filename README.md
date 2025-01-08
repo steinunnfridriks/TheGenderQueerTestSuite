@@ -27,4 +27,4 @@ Each example starts by explicitly referencing the gender of the subject or subje
 
 Additionally, in the case of single-sentence examples, genders are explicitly stated in a similar format: "These men/women who live next door to me are my neighbors and they...". By explicitly stating the gender of the subject or subjects, we avoid problems that may arise when gender is assumed based of a person's name. 
 
-Further information, including which publication to cite when referencing the GenderQueer Test Suite, will be made available shortly.
+Further information can be found in [this paper](https://aclanthology.org/2024.wmt-1.26/). Please cite it if using the GenderQueer test suite. 
